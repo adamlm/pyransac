@@ -1,15 +1,15 @@
 import math
 import unittest
 
-import ransac
+import pyransac
 
 
 class TestRansac(unittest.TestCase):
     def setUp(self) -> None:
-        self.params = ransac.RansacParams(samples=1,
-                                          iterations=2,
-                                          confidence=3,
-                                          threshold=4)
+        self.params = pyransac.RansacParams(samples=1,
+                                            iterations=2,
+                                            confidence=3,
+                                            threshold=4)
 
     def test_ransac_params(self) -> None:
         self.assertEqual(self.params.samples, 1)
@@ -58,15 +58,15 @@ class TestRansac(unittest.TestCase):
         test_inliers = [(x, x) for x in range(0, 10)]
         test_outliers = [(5, 1), (5, 2), (6, 1), (5, 2)]
         test_data = test_inliers + test_outliers
-        ransac_params = ransac.RansacParams(samples=2,
-                                            iterations=10,
-                                            confidence=0.5,
-                                            threshold=1)
+        ransac_params = pyransac.RansacParams(samples=2,
+                                              iterations=10,
+                                              confidence=0.5,
+                                              threshold=1)
 
-        inliers = ransac.find_inliers(points=test_data,
-                                      param_func=param_func,
-                                      error_func=error_func,
-                                      params=ransac_params)
+        inliers = pyransac.find_inliers(points=test_data,
+                                        param_func=param_func,
+                                        error_func=error_func,
+                                        params=ransac_params)
 
         self.assertEqual(sorted(test_inliers), sorted(inliers))
 

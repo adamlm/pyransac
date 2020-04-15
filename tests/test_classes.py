@@ -7,7 +7,7 @@ This module contains tests for classes in the classes module.
 import unittest
 
 # Local application imports
-import ransac
+import pyransac
 
 
 class TestRansacParams(unittest.TestCase):
@@ -19,10 +19,10 @@ class TestRansacParams(unittest.TestCase):
 
         :return: None
         """
-        params = ransac.RansacParams(samples=1,
-                                     iterations=2,
-                                     confidence=3,
-                                     threshold=4)
+        params = pyransac.RansacParams(samples=1,
+                                       iterations=2,
+                                       confidence=3,
+                                       threshold=4)
 
         self.assertEqual(params.samples, 1)
         self.assertEqual(params.iterations, 2)

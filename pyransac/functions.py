@@ -1,6 +1,6 @@
 import random
 
-from ransac.classes import RansacParams
+from pyransac.classes import RansacParams
 
 
 def find_inliers(points, param_func, error_func, params: RansacParams):
