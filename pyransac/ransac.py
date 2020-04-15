@@ -68,7 +68,7 @@ def _find_supporters(points: list, func, params, threshold) -> list:
     supporters = []
 
     for point in points:
-        error = func(point, params)
+        error = func(point)
 
         if error <= threshold:
             supporters.append(point)

@@ -4,12 +4,11 @@ This module contains tests for the ransac module.
 """
 
 # Standard library imports
-import math
 import unittest
 
 # Local application imports
 from pyransac import ransac
-from pyransac import functions
+from pyransac import line2d
 
 
 class TestRansac(unittest.TestCase):
@@ -36,17 +35,22 @@ class TestRansac(unittest.TestCase):
 
         :return: None
         """
-        test_inliers = [(x, x) for x in range(0, 10)]
-        test_outliers = [(5, 1), (5, 2), (6, 1), (5, 2)]
+        test_inliers = [line2d.Point2D(x, x) for x in range(0, 10)]
+        test_outliers = [line2d.Point2D(5, 1),
+                         line2d.Point2D(5, 2),
+                         line2d.Point2D(6, 1),
+                         line2d.Point2D(5, 2)]
         test_data = test_inliers + test_outliers
         ransac_params = ransac.RansacParams(samples=2,
                                             iterations=10,
                                             confidence=0.5,
                                             threshold=1)
 
+        test_model = line2d.Line2D()
+
         inliers = ransac.find_inliers(points=test_data,
-                                      param_func=functions.get_line,
-                                      error_func=functions.get_line_error,
+                                      param_func=test_model.make_model,
+                                      error_func=test_model.calc_error,
                                       params=ransac_params)
 
         self.assertEqual(sorted(test_inliers), sorted(inliers))
