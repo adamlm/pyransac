@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pyransac",
-    version="",
+    version="1.0.0",
     author="Adam Morrissett",
     author_email="me@adamlm.com",
     description="A general random sample consensus (RANSAC) package",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="",
+    url="https://github.com/MeelonUsk/pyransac",
     packages=setuptools.find_packages(),
     classifiers=[
         "Program Language :: Python :: 3",
