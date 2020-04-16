@@ -5,7 +5,12 @@ This module contains the core code for the RANSAC algorithm.
 
 # Standard library imports
 from dataclasses import dataclass
+from math import log
 import random
+from typing import List
+
+# Local application imports
+from pyransac.base import Model
 
 
 @dataclass
@@ -27,50 +32,46 @@ class RansacParams:
     """The error threshold to consider a point an inlier"""
 
 
-def find_inliers(points, param_func, error_func, params: RansacParams):
+def find_inliers(points: List, model: Model, params: RansacParams):
     """Find the inliers from a data set.
 
     Finds the inliers from a given data set given a model and
     an error function.
 
     :param points: data points to evaluate
-    :param param_func: function to generate model parameters
-    :param error_func: function to evaluate error between data
-    point and model
+    :param model: type of model to which the data should adhere
     :param params: parameters for the RANSAC algorithm
     :return: inliers
     """
     inliers = []
     max_support = 0
+    iterations = params.iterations
+    i = 0
 
-    for _ in range(0, params.iterations):
+    while i < iterations:
         sample_points = random.choices(points, k=params.samples)
-        func_params = param_func(sample_points)
-        supporters = _find_supporters(points, error_func, func_params,
-                                      params.threshold)
+        model.make_model(sample_points)
+        supporters = _find_supporters(points, model, params.threshold)
 
         if len(supporters) > max_support:
             max_support = len(supporters)
             inliers = supporters
 
+            confidence = 1 - params.confidence
+            ratio = len(supporters) / len(points)
+            iterations = log(confidence) / log(1 - ratio ** params.samples)
+
+        i += 1
+
     return inliers
 
 
-def _find_supporters(points: list, func, params, threshold) -> list:
+def _find_supporters(points: List, model: Model, threshold: float) -> List:
     """Find data points (supporters) that support the given hypothesis.
 
     :param points: data points to test against the hypothesis
-    :param func: error function for evaluating data points
-    :param params: error function parameters
+    :param model: type of model to which the data should adhere
     :param threshold: error threshold to consider data point an inlier
     :return: data points that support the hypothesis
     """
-    supporters = []
-
-    for point in points:
-        error = func(point)
-
-        if error <= threshold:
-            supporters.append(point)
-
-    return supporters
+    return [point for point in points if model.calc_error(point) <= threshold]
