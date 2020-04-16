@@ -5,7 +5,7 @@ This module contains the core code for the RANSAC algorithm.
 
 # Standard library imports
 from dataclasses import dataclass
-import math
+from math import log
 import random
 from typing import List
 
@@ -56,8 +56,10 @@ def find_inliers(points: List, model: Model, params: RansacParams):
         if len(supporters) > max_support:
             max_support = len(supporters)
             inliers = supporters
+
+            confidence = 1 - params.confidence
             ratio = len(supporters) / len(points)
-            iterations = math.log(1 - params.confidence) / math.log(1 - ratio)
+            iterations = log(confidence) / log(1 - ratio ** params.samples)
 
         i += 1
 
