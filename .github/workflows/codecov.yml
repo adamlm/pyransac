@@ -19,7 +19,7 @@ jobs:
       - name: Install pylint
         run: pip install pylint
       - name: Run pylint
-        run: pylint setup.py pyransac/ tests/
+        run: python -m pylint setup.py pyransac/ tests/
 
   build:
     runs-on: ${{ matrix.os }}
