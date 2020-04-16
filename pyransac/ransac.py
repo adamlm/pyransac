@@ -46,8 +46,7 @@ def find_inliers(points, param_func, error_func, params: RansacParams):
     for _ in range(0, params.iterations):
         sample_points = random.choices(points, k=params.samples)
         func_params = param_func(sample_points)
-        supporters = _find_supporters(points, error_func, func_params,
-                                      params.threshold)
+        supporters = _find_supporters(points, error_func, params.threshold)
 
         if len(supporters) > max_support:
             max_support = len(supporters)
@@ -56,12 +55,11 @@ def find_inliers(points, param_func, error_func, params: RansacParams):
     return inliers
 
 
-def _find_supporters(points: list, func, params, threshold) -> list:
+def _find_supporters(points: list, func, threshold) -> list:
     """Find data points (supporters) that support the given hypothesis.
 
     :param points: data points to test against the hypothesis
     :param func: error function for evaluating data points
-    :param params: error function parameters
     :param threshold: error threshold to consider data point an inlier
     :return: data points that support the hypothesis
     """
