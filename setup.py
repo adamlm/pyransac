@@ -19,7 +19,7 @@ setuptools.setup(
     url="https://github.com/MeelonUsk/pyransac",
     packages=setuptools.find_packages(),
     classifiers=[
-        "Program Language :: Python :: 3",
+        "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent"
     ],
