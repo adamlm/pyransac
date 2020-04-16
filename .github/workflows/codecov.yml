@@ -5,7 +5,8 @@ jobs:
   lint:
     runs-on: ubuntu-latest,
     strategy:
-      python-version: [3.7, 3.8]
+      matrix:
+        python-version: [3.7, 3.8]
 
     steps:
       - name: Clone repo
