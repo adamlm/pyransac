@@ -20,6 +20,6 @@ jobs:
       - name: Install Coverage.py
         run: pip install coverage
       - name: Generate coverage report
-        run: coverage -m unittest discover tests/
+        run: coverage run --source=pyransac -m unittest discover tests/
       - name: Print coverage report
         run: coverage report -m
