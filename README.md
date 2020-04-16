@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/MeelonUsk/pyransac/branch/master/graph/badge.svg)](https://codecov.io/gh/MeelonUsk/pyransac)
+
 # `pyransac` package
 This package is a general random sample consensus (RANSAC) framework. For
 convenience, some data models (such as a straight line) are already provided.
