@@ -1,3 +1,4 @@
+![](https://github.com/MeelonUsk/pyransac/workflows/Continuous%20Integration/badge.svg)
 [![codecov](https://codecov.io/gh/MeelonUsk/pyransac/branch/master/graph/badge.svg)](https://codecov.io/gh/MeelonUsk/pyransac)
 
 # `pyransac` package
