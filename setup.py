@@ -1,7 +1,12 @@
+"""pyransac package details.
+
+This module contains the package details for pyransac.
+"""
+
 import setuptools
 
 with open("README.md", "r") as fh:
-    long_description = fh.read()
+    LONG_DESCRIPTION = fh.read()
 
 setuptools.setup(
     name="pyransac",
@@ -9,7 +14,7 @@ setuptools.setup(
     author="Adam Morrissett",
     author_email="me@adamlm.com",
     description="A general random sample consensus (RANSAC) package",
-    long_description=long_description,
+    long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
     url="https://github.com/MeelonUsk/pyransac",
     packages=setuptools.find_packages(),
