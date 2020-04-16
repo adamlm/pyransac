@@ -17,5 +17,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           architecture: 'x64'
-      - name: Display Python version
-        run: python --version
+      - name: Install Coverage.py
+        run: pip install coverage
+      - name: Generate coverage report
+        run: coverage -m unittest discover tests/
+      - name: Print coverage report
+        run: coverage report -m
