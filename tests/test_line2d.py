@@ -37,7 +37,7 @@ class TestLine2D(unittest.TestCase):
     def test_line2d_init_args(self) -> None:
         """Test 2D line model initialization with parameters.
 
-                """
+        """
         test_model = line2d.Line2D(slope=1, y_int=2, x_int=3)
 
         self.assertEqual(test_model.slope, 1)
