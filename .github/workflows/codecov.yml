@@ -1,7 +1,25 @@
-name: Code Coverage
+name: Continuous Integration
 on: [push]
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest,
+    strategy:
+      python-version: [3.7, 3.8]
+
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: 'x64'
+      - name: Install pylint
+        run: pip install pylint
+      - name: Run pylint
+        run: pylint setup.py pyransac/ tests/
+
   build:
     runs-on: ${{ matrix.os }}
     strategy:
