@@ -8,6 +8,9 @@ from dataclasses import dataclass
 import math
 from typing import List
 
+# Local application imports
+from pyransac.base import Model
+
 
 @dataclass(order=True)
 class Point2D:
@@ -21,7 +24,7 @@ class Point2D:
     """y coordinate of point"""
 
 
-class Line2D:
+class Line2D(Model):
     """Model for a 2-dimensional line.
 
     """
