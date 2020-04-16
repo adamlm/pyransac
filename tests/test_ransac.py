@@ -43,14 +43,13 @@ class TestRansac(unittest.TestCase):
         test_data = test_inliers + test_outliers
         ransac_params = ransac.RansacParams(samples=2,
                                             iterations=10,
-                                            confidence=0.5,
+                                            confidence=0.999,
                                             threshold=1)
 
         test_model = line2d.Line2D()
 
         inliers = ransac.find_inliers(points=test_data,
-                                      param_func=test_model.make_model,
-                                      error_func=test_model.calc_error,
+                                      model=test_model,
                                       params=ransac_params)
 
         self.assertEqual(sorted(test_inliers), sorted(inliers))
