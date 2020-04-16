@@ -10,12 +10,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pyransac",
-    version="1.0.0",
+    version="1.0.2",
     author="Adam Morrissett",
     author_email="me@adamlm.com",
     description="A general random sample consensus (RANSAC) package",
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
+    keywords="random sample consensus ransac",
     url="https://github.com/MeelonUsk/pyransac",
     packages=setuptools.find_packages(),
     classifiers=[
