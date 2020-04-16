@@ -23,9 +23,10 @@ jobs:
         run: coverage run --source=pyransac -m unittest discover tests/
       - name: Print coverage report
         run: coverage report -m
-      - name: Install coveragepy
-        run: pip install coveragepy
+      - name: Generate XML report
+        run: coverage xml
       - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@v1
         with:
+          file: ./coverage.xml
           fail_ci_if_error: true
