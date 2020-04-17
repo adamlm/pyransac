@@ -66,3 +66,23 @@ jobs:
         with:
           file: ./coverage.xml
           fail_ci_if_error: true
+
+  docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.x
+          architecture: 'x64'
+      - name: Install Sphinx
+        run: pip install sphinx
+      - name: Install Read the Docs Sphinx Theme
+        run: pip install sphinx_rtd_theme
+      - name: Build Docs
+        run: |
+          cd docs/source
+          make html
