@@ -63,7 +63,7 @@ class Line2D(Model):
         Model parameters are stored internally.
 
         :param points: list of data points to make model
-        (length must be 2)
+            (length must be 2)
         :return: None
         """
         if len(points) != 2:
