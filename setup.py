@@ -10,7 +10,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pyransac",
-    version="1.0.2",
+    version="1.1.0",
     author="Adam Morrissett",
     author_email="me@adamlm.com",
     description="A general random sample consensus (RANSAC) package",
