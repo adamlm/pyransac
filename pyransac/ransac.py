@@ -59,6 +59,11 @@ def find_inliers(points: List, model: Model, params: RansacParams):
 
             confidence = 1 - params.confidence
             ratio = len(supporters) / len(points)
+
+            # We cannot get more support than all data points
+            if ratio == 1:
+                break
+
             iterations = log(confidence) / log(1 - ratio ** params.samples)
 
         i += 1

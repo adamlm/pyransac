@@ -54,6 +54,25 @@ class TestRansac(unittest.TestCase):
 
         self.assertEqual(sorted(test_inliers), sorted(inliers))
 
+    def test_no_outliers(self) -> None:
+        """Test that RANSAC functions given all inliers.
+
+        :return: None
+        """
+        test_data = [line2d.Point2D(x, x) for x in range(0, 10)]
+        ransac_params = ransac.RansacParams(samples=2,
+                                            iterations=10,
+                                            confidence=0.999,
+                                            threshold=1)
+
+        test_model = line2d.Line2D()
+
+        inliers = ransac.find_inliers(points=test_data,
+                                      model=test_model,
+                                      params=ransac_params)
+
+        self.assertEqual(sorted(test_data), sorted(inliers))
+
 
 if __name__ == '__main__':
     unittest.main()
