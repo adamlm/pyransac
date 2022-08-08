@@ -23,12 +23,14 @@ class TestRansac(unittest.TestCase):
         params = ransac.RansacParams(samples=1,
                                      iterations=2,
                                      confidence=3,
-                                     threshold=4)
+                                     threshold=4,
+                                     replacement=True)
 
         self.assertEqual(params.samples, 1)
         self.assertEqual(params.iterations, 2)
         self.assertEqual(params.confidence, 3)
         self.assertEqual(params.threshold, 4)
+        self.assertEqual(params.replacement, True)
 
     def test_find_inliers(self) -> None:
         """Test the ransac find_inliers function.
@@ -44,7 +46,8 @@ class TestRansac(unittest.TestCase):
         ransac_params = ransac.RansacParams(samples=2,
                                             iterations=10,
                                             confidence=0.999,
-                                            threshold=1)
+                                            threshold=1,
+                                            replacement=False)
 
         test_model = line2d.Line2D()
 
@@ -63,7 +66,8 @@ class TestRansac(unittest.TestCase):
         ransac_params = ransac.RansacParams(samples=2,
                                             iterations=10,
                                             confidence=0.999,
-                                            threshold=1)
+                                            threshold=1,
+                                            replacement=False)
 
         test_model = line2d.Line2D()
 

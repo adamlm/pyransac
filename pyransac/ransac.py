@@ -30,6 +30,9 @@ class RansacParams:
 
     threshold: float
     """The error threshold to consider a point an inlier"""
+    
+    replacement: bool
+    """The samples should be drawn with replacement (i.e. repeats are OK)"""
 
 
 def find_inliers(points: List, model: Model, params: RansacParams):
@@ -49,7 +52,11 @@ def find_inliers(points: List, model: Model, params: RansacParams):
     i = 0
 
     while i < iterations:
-        sample_points = random.choices(points, k=params.samples)
+        if params.replacement:
+            sample_points = random.choices(points, k=params.samples)
+        else:
+            sample_points = random.sample(points, k=params.samples)
+            
         model.make_model(sample_points)
         supporters = _find_supporters(points, model, params.threshold)
 
